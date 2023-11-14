@@ -51,14 +51,12 @@ export const catchPokemon = async (req, res) => {
       // Cek apakah nama Pokemon sudah ada dalam data sebelumnya
       const isPokemonExists = currentData.some((pokemon) =>{
         const existingNameParts = pokemon.name.split('-');
-        const formattedExistingName = existingNameParts[0].toLowerCase();
 
-        return formattedExistingName === formattedName;
+        return existingNameParts[0] === formattedName;
       });
 
       // pokemon.name === name
-
-      console.log(isPokemonExists)
+      
 
       if (isPokemonExists) {
         res.status(400).json({ message: 'Pokemonnya udah kamu tangkap' });
@@ -78,7 +76,6 @@ export const catchPokemon = async (req, res) => {
     }
     
   }catch(error){
-    console.log(error)
     return res.status(500).json({ message: 'Internal Server Error' })
   }
 }
